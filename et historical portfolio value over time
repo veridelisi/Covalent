@@ -1,0 +1,65 @@
+import json
+import requests
+#Get historical portfolio value over time 
+
+host = "https://api.covalenthq.com/"
+endpoint = 'v1/{chain_id}/address/{address}/portfolio_v2/'
+endpoint = endpoint.format(chain_id=43114, address="0x30dfdc78173766ba26127afd1aaaad6e183d8762")
+
+headers = {
+    "cache-control": "public, max-age=10, stale-while-revalidate=30",
+    "content-type" : "application/json"
+}
+
+parameters = {
+    "contract-address": "0x30dfdc78173766ba26127afd1aaaad6e183d8762",
+    "quote-currency" : "USD",
+    "key": "ckey_f4606cdaea5645eda5143762414"
+  
+}
+
+request = requests.get(host + endpoint, headers=headers, params=parameters)
+
+json_data = json.loads(request.text)
+json_data_str = json.dumps(json_data, indent=2)
+
+print(json_data_str)
+
+
+len(json_data["items"])
+
+
+contract_names = []
+
+for item in json_data["items"]:
+    contract_names.append(item["contract_name"])
+
+contract_names
+
+holdings = []
+
+for item in json_data["items"]:
+    holdings.append(item["holdings"])
+
+holdings 
+
+len(holdings)
+
+quote_rate = []
+
+for item in holdings[0]:
+    quote_rate.append(item["quote_rate"])
+
+quote_rate
+
+quote_rate1 = []
+
+for item in holdings[1]:
+    quote_rate1.append(item["quote_rate"])
+
+quote_rate1
+
+for item in json_data["items"]:
+    for holding in item["holdings"]:
+        if holding["quote_rate"] is not None:
+            print(item["contract_ticker_symbol"],holding["timestamp"],holding["quote_rate"])
