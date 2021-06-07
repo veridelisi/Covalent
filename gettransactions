@@ -24,3 +24,47 @@ json_data_str = json.dumps(json_data, indent=2)
 
 print(json_data_str)
 
+
+
+log_events= []
+for item in json_data["data"]["items"]:
+    log_events.append(item["log_events"])
+
+print(log_events)
+
+
+
+
+for item in json_data["data"]["items"]:
+    for transactions in item["log_events"]:
+        print(transactions["decoded"]["name"])
+        
+        
+for item in json_data["data"]["items"]:
+    for transactions in item["log_events"]:
+        names=transactions["decoded"]["name"]
+        values=transactions["decoded"]["params"][-1]["value"]
+        print(names,values)       
+        
+        
+ for item in json_data["data"]["items"]:
+    for transactions in item["log_events"]:
+        names=transactions["decoded"]["name"]
+        values=[param["value"] for param in transactions["decoded"]["params"]]
+        print(names,values)
+        
+        
+ for item in json_data["data"]["items"]:
+    for transactions in item["log_events"]:
+        names=transactions["decoded"]["name"]
+        values=[(param["name"],param["value"]) for param in transactions["decoded"]["params"]]
+        print(names,values)
+        
+        
+ for item in json_data["data"]["items"]:
+    for transactions in item["log_events"]:
+        names=transactions["decoded"]["name"]
+        values=[(param["name"],param["value"]) for param in transactions["decoded"]["params"] if param["type"] !="address"]
+        print(names,values)
+        
+
