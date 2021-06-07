@@ -1,0 +1,26 @@
+import json
+import requests
+#Get transactions
+
+host = "https://api.covalenthq.com/"
+endpoint = 'v1/{chain_id}/address/{address}/transactions_v2/'
+endpoint = endpoint.format(chain_id=43114, address="0x30dfdc78173766ba26127afd1aaaad6e183d8762")
+
+headers = {
+    "cache-control": "public, max-age=10, stale-while-revalidate=30",
+    "content-type" : "application/json"
+}
+
+parameters = {
+    "contract-address": "0x30dfdc78173766ba26127afd1aaaad6e183d8762",
+    "quote-currency" : "USD",
+    "key":"YOUR API PLEASE"
+}
+
+request = requests.get(host + endpoint, headers=headers, params=parameters)
+
+json_data = json.loads(request.text)
+json_data_str = json.dumps(json_data, indent=2)
+
+print(json_data_str)
+
