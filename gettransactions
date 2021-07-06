@@ -1,10 +1,13 @@
 import json
 import requests
-#Get transactions
+#Get a transaction. Retrieve a single transaction for tx_hash including their decoded log events.
 
 host = "https://api.covalenthq.com/"
-endpoint = 'v1/{chain_id}/address/{address}/transactions_v2/'
-endpoint = endpoint.format(chain_id=43114, address="0x30dfdc78173766ba26127afd1aaaad6e183d8762")
+endpoint = 'v1/{chain_id}/transaction_v2/{tx_hash}/'
+endpoint = endpoint.format(chain_id=43114,tx_hash="0x8dee4a9c83faf0f86170a6211ec8160a307dfd1ece88e5a39378b912ef862374")
+                           
+#My transaction 0x8dee4a9c83faf0f86170a6211ec8160a307dfd1ece88e5a39378b912ef862374
+#https://cchain.explorer.avax.network/tx/0x8dee4a9c83faf0f86170a6211ec8160a307dfd1ece88e5a39378b912ef862374/token-transfers
 
 headers = {
     "cache-control": "public, max-age=10, stale-while-revalidate=30",
@@ -12,10 +15,16 @@ headers = {
 }
 
 parameters = {
-    "contract-address": "0x30dfdc78173766ba26127afd1aaaad6e183d8762",
+    #
+    
     "quote-currency" : "USD",
-    "key":"YOUR API PLEASE"
+   
+    "key":"Your KEY"
+    
+    
 }
+
+
 
 request = requests.get(host + endpoint, headers=headers, params=parameters)
 
@@ -24,47 +33,11 @@ json_data_str = json.dumps(json_data, indent=2)
 
 print(json_data_str)
 
-
-
-log_events= []
-for item in json_data["data"]["items"]:
-    log_events.append(item["log_events"])
-
-print(log_events)
-
-
-
-
-for item in json_data["data"]["items"]:
-    for transactions in item["log_events"]:
-        print(transactions["decoded"]["name"])
-        
-        
-for item in json_data["data"]["items"]:
-    for transactions in item["log_events"]:
-        names=transactions["decoded"]["name"]
-        values=transactions["decoded"]["params"][-1]["value"]
-        print(names,values)       
-        
-        
- for item in json_data["data"]["items"]:
-    for transactions in item["log_events"]:
-        names=transactions["decoded"]["name"]
-        values=[param["value"] for param in transactions["decoded"]["params"]]
-        print(names,values)
-        
-        
- for item in json_data["data"]["items"]:
-    for transactions in item["log_events"]:
-        names=transactions["decoded"]["name"]
-        values=[(param["name"],param["value"]) for param in transactions["decoded"]["params"]]
-        print(names,values)
-        
-        
- for item in json_data["data"]["items"]:
-    for transactions in item["log_events"]:
-        names=transactions["decoded"]["name"]
-        values=[(param["name"],param["value"]) for param in transactions["decoded"]["params"] if param["type"] !="address"]
+#Events and amounts
+for transactions in json_data["data"]["items"]:
+    for item in transactions["log_events"]:
+        names=item["decoded"]["name"]
+        values=item["decoded"]["params"][-1]["value"]
         print(names,values)
         
 
