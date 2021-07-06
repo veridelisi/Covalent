@@ -9,3 +9,5 @@ https://www.covalenthq.com/docs/api/#overview
 Ankara
 <BR>
 Alchemist  | Dr.Engin YILMAZ
+<br>
+  Thanks to Mr. Selçuk
