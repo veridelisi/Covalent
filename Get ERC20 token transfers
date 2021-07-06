@@ -15,7 +15,7 @@ parameters = {
     "quote-currency" : "USD",
     #You need to write here contract-address
     "contract-address":"0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
-    "key": "ckey_f4606cdaea5645eda5143762414"
+    "key": "Your KEY"
 
 }
 
