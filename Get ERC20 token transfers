@@ -17,7 +17,7 @@ parameters = {
     "quote-currency" : "USD",
     #You need to write here contract-address. This is PNG contract address. We will see my PNG transfers.
     "contract-address":"0x60781C2586D68229fde47564546784ab3fACA982",
-    "key": "ckey_f4606cdaea5645eda5143762414"
+    "key": "Your KEY"
 
 }
 
