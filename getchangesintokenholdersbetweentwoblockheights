@@ -6,6 +6,7 @@ host = "https://api.covalenthq.com/"
 endpoint = 'v1/{chain_id}/tokens/{address}/token_holders_changes/'
 endpoint = endpoint.format(chain_id=43114, address="0x60781C2586D68229fde47564546784ab3fACA982")
                            
+#This is PNG Contract Details
 
 headers = {
     "cache-control": "public, max-age=10, stale-while-revalidate=30",
@@ -18,7 +19,7 @@ parameters = {
     "ending-block": "1974369",
     "quote-currency" : "USD",
    
-    "key":"ckey_f4606cdaea5645eda5143762414"
+    "key":"Your KEY"
     
     
 }
@@ -34,7 +35,7 @@ print(json_data_str)
 
 
 
-
+#Token holders and their wealth change.
 for transactions in json_data["data"]["items"]:
    
         names=transactions["token_holder"]
