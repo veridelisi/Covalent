@@ -1,6 +1,7 @@
 import json
 import requests
 #Get block heights
+#Retrieve all the block height(s) of a particular chain within a date range. If the end_date is set to latest, return every block height from the start_date to now. 
 
 host = "https://api.covalenthq.com/"
 endpoint = 'v1/{chain_id}/block_v2/{start_date}/{end_date}/'
@@ -17,7 +18,7 @@ parameters = {
     "quote-currency" : "USD",
     #You need to limit (remember every second creating the new one block)
     "limit":"3000",
-    "key": "ckey_f4606cdaea5645eda5143762414"
+    "key": "Your KEY"
   
 }
 
@@ -27,3 +28,6 @@ json_data = json.loads(request.text)
 json_data_str = json.dumps(json_data, indent=2)
 
 print(json_data_str)
+
+#length
+len(json_data["data"]["items"])
