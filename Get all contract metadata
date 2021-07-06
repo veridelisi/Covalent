@@ -1,6 +1,7 @@
 import json
 import requests
-#Get all contract metadata 
+#Returns a list of all contracts on a blockchain along with their metadata.
+#Get all contract metadata for AVAX and Ethereum
 
 host = "https://api.covalenthq.com/"
 endpoint = 'v1/{chain_id}/tokens/tokenlists/{id}/'
@@ -17,7 +18,7 @@ parameters = {
     
     "quote-currency" : "USD",
    
-    "key":"ckey_f4606cdaea5645eda5143762414"
+    "key":"Your KEY"
     
     
 }
@@ -32,4 +33,10 @@ json_data_str = json.dumps(json_data, indent=2)
 print(json_data_str)
 
 
-len(eth)
+#names and AVAX and Ethereum addresses
+for transactions in json_data["data"]["items"]:
+   
+        names=transactions["contract_ticker_symbol"]
+        avax=transactions["contract_address"]
+        eth=transactions["ethereum_mainnet_address"]                
+        print(names,avax, eth)
