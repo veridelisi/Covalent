@@ -1,6 +1,6 @@
 import json
 import requests
-#Get transactions
+#Get transactions with match function
 
 host = "https://api.covalenthq.com/"
 endpoint = 'v1/{chain_id}/address/{address}/transactions_v2/'
@@ -14,7 +14,7 @@ headers = {
 parameters = {
   
     "match" : '[{"$match":{"gas_price":41000000000}}]',
-    "key":"ckey_f4606cdaea5645eda5143762414"  
+    "key":"Your KEY"  
 }
 
 request = requests.get(host + endpoint, headers=headers, params=parameters)
