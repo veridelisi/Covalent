@@ -15,7 +15,7 @@ headers = {
 parameters = {
     
     "quote-currency" : "USD",
-    "key": "ckey_f4606cdaea5645eda5143762414"
+    "key": "Your KEY"
   
 }
 
